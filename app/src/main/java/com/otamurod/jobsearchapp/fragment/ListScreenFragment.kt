@@ -45,6 +45,8 @@ class ListScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this).get(ListScreenViewModel::class.java)
+        viewModel.getLiveData()
+
 
         super.onViewCreated(view, savedInstanceState)
     }
