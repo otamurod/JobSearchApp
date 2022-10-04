@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
     companion object {
-        const val BASE_URL = "https://www.themuse.com/developers/api/v2"
+        const val BASE_URL = "https://www.themuse.com/api/public/"
 
         fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder()
