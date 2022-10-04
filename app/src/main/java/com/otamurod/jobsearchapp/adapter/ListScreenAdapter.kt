@@ -1,12 +1,13 @@
 package com.otamurod.jobsearchapp.adapter
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.otamurod.jobsearchapp.databinding.ItemListBinding
 
-class ListScreenAdapter():RecyclerView.Adapter<ListScreenAdapter.VH>() {
+class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
 
-    inner class VH(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class VH(val itemListBinding: ItemListBinding) :
+        RecyclerView.ViewHolder(itemListBinding.root) {
 
     }
 
