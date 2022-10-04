@@ -1,16 +1,24 @@
 package com.otamurod.jobsearchapp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.otamurod.jobsearchapp.databinding.ItemListBinding
 
 class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
+    var items = ArrayList<String>()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setUpdatedData(items: ArrayList<String>) {
+        this.items = items
+        notifyDataSetChanged()
+    }
 
     inner class VH(val itemListBinding: ItemListBinding) :
         RecyclerView.ViewHolder(itemListBinding.root) {
-        fun onBind() {
-
+        fun onBind(item: String) {
+            itemListBinding.textView.text = item
         }
     }
 
@@ -19,10 +27,8 @@ class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.onBind()
+        holder.onBind(items[position])
     }
 
-    override fun getItemCount(): Int {
-        // TODO: return list.size
-    }
+    override fun getItemCount() = items.size
 }
