@@ -74,7 +74,7 @@ class ListScreenFragment : Fragment() {
         viewModel.getLiveData()
             .observe(viewLifecycleOwner, Observer<ListItemModel> { listItemModel ->
                 if (listItemModel != null) { //check if response is not null
-                    adapter.setUpdatedData(listItemModel.locations) //set data to adapter
+                    adapter.setUpdatedData(listItemModel.jobs) //set data to adapter
                 } else {
                     Toast.makeText(activity, "Error getting data", Toast.LENGTH_SHORT)
                         .show() //notify about response error
