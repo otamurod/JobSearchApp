@@ -3,6 +3,8 @@ package com.otamurod.jobsearchapp.fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.otamurod.apicallusingmvvmcoroutines.network.RetrofitInstance
+import com.otamurod.apicallusingmvvmcoroutines.network.RetrofitService
 import com.otamurod.jobsearchapp.model.ListItemModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
