@@ -40,6 +40,7 @@ class ListScreenFragment : Fragment() {
         }
     }
 
+    //declare variables
     lateinit var listScreenBinding: FragmentListScreenBinding
     lateinit var viewModel: ListScreenViewModel
     lateinit var adapter: ListScreenAdapter
@@ -47,15 +48,15 @@ class ListScreenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         listScreenBinding = FragmentListScreenBinding.inflate(layoutInflater)
         return listScreenBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initViewModel()
-        initAdapter()
+        initViewModel() //initialize ViewModel in Fragment
+        initAdapter() //initializes adapter
 
         super.onViewCreated(view, savedInstanceState)
     }
@@ -66,37 +67,36 @@ class ListScreenFragment : Fragment() {
     }
 
     private fun initViewModel() {
-
-        viewModel = ViewModelProvider(this).get(ListScreenViewModel::class.java)
-
+        viewModel = ViewModelProvider(this).get(ListScreenViewModel::class.java) //get viewModel
+        //check network state, because we use Retrofit to get data from API
         checkNetworkStatus()
 
         viewModel.getLiveData()
             .observe(viewLifecycleOwner, Observer<ListItemModel> { listItemModel ->
-                if (listItemModel != null) {
-                    adapter.setUpdatedData(listItemModel.items)
+                if (listItemModel != null) { //check if response is not null
+                    adapter.setUpdatedData(listItemModel.locations) //set data to adapter
                 } else {
-                    Toast.makeText(activity, "Error getting data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Error getting data", Toast.LENGTH_SHORT)
+                        .show() //notify about response error
                 }
             })
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun checkNetworkStatus() {
-
         val conMgr =
             activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
         val activeNetwork = conMgr.activeNetworkInfo;
         if (activeNetwork != null && activeNetwork.isConnected) {
             // notify user you are online
             Toast.makeText(activity, "Network State: Online", Toast.LENGTH_SHORT).show()
-            makeAPICall()
+            makeAPICall() //send request to API when online
         } else {
             // notify user you are not online
             Toast.makeText(activity, "Network State: Offline", Toast.LENGTH_LONG).show()
         }
 
-        networkChangeListener()
+        networkChangeListener() //create network state listener
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -108,7 +108,7 @@ class ListScreenFragment : Fragment() {
                 override fun onAvailable(network: Network) {
                     //take action when network connection is gained
                     Toast.makeText(context, "Back Online", Toast.LENGTH_SHORT).show()
-                    makeAPICall()
+                    makeAPICall() //again call to API when network available
                 }
 
                 override fun onLost(network: Network) {
@@ -120,8 +120,8 @@ class ListScreenFragment : Fragment() {
     }
 
     private fun makeAPICall() {
-        val query = ""
-        viewModel.sendQuery(query)
+        val query = "page=1" //query to send to API
+        viewModel.sendQuery(query) //send query
     }
 
     companion object {

@@ -5,20 +5,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.otamurod.jobsearchapp.databinding.ItemListBinding
+import com.otamurod.jobsearchapp.model.Location
 
 class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
-    var items = ArrayList<String>()
+    var items = ArrayList<Location>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setUpdatedData(items: ArrayList<String>) {
+    fun setUpdatedData(items: ArrayList<Location>) {
         this.items = items
         notifyDataSetChanged()
     }
 
     inner class VH(val itemListBinding: ItemListBinding) :
         RecyclerView.ViewHolder(itemListBinding.root) {
-        fun onBind(item: String) {
-            itemListBinding.textView.text = item
+        fun onBind(location: Location) {
+            itemListBinding.textView.text = location.name
         }
     }
 

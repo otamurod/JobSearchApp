@@ -24,7 +24,7 @@ class ListScreenViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             val retrofitService =
                 RetrofitInstance.getRetrofitInstance().create(RetrofitService::class.java)
-            val response = retrofitService.getDataFromAPI()
+            val response = retrofitService.getDataFromAPI(query)
             liveData.postValue(response)
 
         }
