@@ -20,7 +20,9 @@ class ListScreenViewModel : ViewModel() {
 
     fun sendQuery(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val jobs = ListItemModel(
+            //we post value to our live data when response comes successfully
+            //so this process will be in IO Thread
+            val jobs = ListItemModel( //this is the fake data
                 arrayListOf(
                     "Android Developer",
                     "iOS Developer",
