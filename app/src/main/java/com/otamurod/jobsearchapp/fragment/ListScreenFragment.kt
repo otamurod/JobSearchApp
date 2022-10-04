@@ -1,11 +1,13 @@
 package com.otamurod.jobsearchapp.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.otamurod.jobsearchapp.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import com.otamurod.jobsearchapp.databinding.FragmentListScreenBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +32,21 @@ class ListScreenFragment : Fragment() {
         }
     }
 
+    lateinit var listScreenBinding: FragmentListScreenBinding
+    lateinit var viewModel: ListScreenViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_screen, container, false)
+        listScreenBinding = FragmentListScreenBinding.inflate(layoutInflater)
+        return listScreenBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = ViewModelProviders.of(this).get(ListScreenViewModel::class.java)
+
+        super.onViewCreated(view, savedInstanceState)
     }
 
     companion object {
