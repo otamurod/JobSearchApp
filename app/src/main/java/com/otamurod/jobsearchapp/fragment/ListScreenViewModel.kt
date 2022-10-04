@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ListScreenViewModel : ViewModel() {
-    private var liveData = MutableLiveData<String>()
+    private lateinit var liveData: MutableLiveData<String>
 
     init {
-        liveData = // TODO: init live data
+        liveData = MutableLiveData()
     }
 
     fun getLiveData(): MutableLiveData<String> {
