@@ -8,14 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ListScreenViewModel : ViewModel() {
-    private lateinit var liveData: MutableLiveData<ListItemModel>
+    private lateinit var jobs: MutableLiveData<ListItemModel>
 
     init {
-        liveData = MutableLiveData()
+        jobs = MutableLiveData()
     }
 
     fun getLiveData(): MutableLiveData<ListItemModel> {
-        return liveData
+        return jobs
     }
 
     fun sendQuery(query: String) {
@@ -32,7 +32,7 @@ class ListScreenViewModel : ViewModel() {
                     "C++ Developer"
                 )
             )
-            liveData.postValue(jobs)
+            this@ListScreenViewModel.jobs.postValue(jobs)
         }
     }
 }
