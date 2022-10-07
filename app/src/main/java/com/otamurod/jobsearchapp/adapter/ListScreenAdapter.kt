@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.otamurod.jobsearchapp.databinding.ItemListBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
     var items = ArrayList<String>()
@@ -23,7 +24,13 @@ class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return VH(
+            ItemListBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
