@@ -1,3 +1,3 @@
 package com.otamurod.jobsearchapp.model
 
-data class ListItemModel(val jobs: ArrayList<String>)
+class ListItemModel(val jobs: ArrayList<String>)

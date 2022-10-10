@@ -1,5 +1,6 @@
 package com.otamurod.jobsearchapp.fragment
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,14 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ListScreenViewModel : ViewModel() {
-    private lateinit var liveData: MutableLiveData<ListItemModel>
+    private var _jobs: MutableLiveData<ListItemModel> = MutableLiveData()
 
-    init {
-        liveData = MutableLiveData()
-    }
+    val jobs: LiveData<ListItemModel>
+        get() = _jobs
 
-    fun getLiveData(): MutableLiveData<ListItemModel> {
-        return liveData
+    fun getUsers(query: String) {
+        sendQuery(query) //send query
     }
 
     fun sendQuery(query: String) {
@@ -32,7 +32,7 @@ class ListScreenViewModel : ViewModel() {
                     "C++ Developer"
                 )
             )
-            liveData.postValue(jobs)
+            this@ListScreenViewModel._jobs.postValue(jobs)
         }
     }
 }
