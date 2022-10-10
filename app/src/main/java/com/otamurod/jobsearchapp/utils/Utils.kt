@@ -25,7 +25,7 @@ object Utils {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun networkChangeListener(context: Context) {
+    private fun networkChangeListener(context: Context) {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.let {

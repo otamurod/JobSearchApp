@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.otamurod.jobsearchapp.databinding.ItemListBinding
 
-class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
+class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.ViewHolder>() {
     var items = ArrayList<String>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -15,15 +15,15 @@ class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
         notifyDataSetChanged()
     }
 
-    inner class VH(val itemListBinding: ItemListBinding) :
+    inner class ViewHolder(val itemListBinding: ItemListBinding) :
         RecyclerView.ViewHolder(itemListBinding.root) {
         fun onBind(job: String) {
             itemListBinding.textView.text = job
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
             ItemListBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -32,7 +32,7 @@ class ListScreenAdapter() : RecyclerView.Adapter<ListScreenAdapter.VH>() {
         )
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.onBind(items[position])
     }
 
